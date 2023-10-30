@@ -1,0 +1,19 @@
+<mat-list
+  style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  "
+>
+  <mat-list-item *ngFor = "let art of artWork | paginate :{itemsPerPage : perPage, currentPage : currentPageNumber, totalItems : totalPages} ; let i = index">
+    <app-card [art]="art"></app-card>
+  </mat-list-item>
+</mat-list>
+
+
+<div class = "d-block text-center">
+  <pagination-controls (pageChange)="onPageChange($event)">
+  </pagination-controls>
+</div>
+<!-- <mat-paginator [showFirstLastButtons]="true" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->

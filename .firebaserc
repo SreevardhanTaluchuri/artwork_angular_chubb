@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "art-users": {
+      "hosting": {
+        "art-institute": [
+          "art-users"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "art-users"
+  }
+}

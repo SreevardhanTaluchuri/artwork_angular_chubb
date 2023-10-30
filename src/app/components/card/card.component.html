@@ -1,0 +1,23 @@
+<div class="card-wrapper  m-2">
+  <div class="row">
+    <div class = "col-lg-4">
+      <img
+      class="image"
+      src="{{ artService.getImageBasedOnUrl(art.image_id) }}"
+      alt="Photo of a Shiba Inu"
+    />
+    </div>
+    <div class = "col-lg-8 d-flex flex-column justify-content-center align-items-center">
+      <div class="card-content">
+        <div>{{ art.title }}</div>
+        <div>{{ art.artist_title }}</div>
+        <p *ngIf="art.description" [innerHTML]="art.description"></p>
+        <div *ngIf="!art.description">
+          No description found
+        </div>
+        <a [routerLink]="['/artwork',art.id]">know more</a>
+      </div>
+    </div>
+  </div>
+</div>
+
