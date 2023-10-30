@@ -1,5 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData } from '@angular/fire/firestore';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  collectionData,
+  collectionSnapshots,
+  getDoc,
+  getFirestore,
+} from '@angular/fire/firestore';
+import { doc } from '@firebase/firestore';
+import { Observable } from 'rxjs';
+import { USer } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-signup',
@@ -8,24 +19,27 @@ import { Firestore, addDoc, collection, collectionData } from '@angular/fire/fir
 })
 export class SignupComponent implements OnInit {
   constructor(private fireStore: Firestore) {}
-
+  users!: Observable<USer[]>;
   addData(f: any) {
-    // console.log(f.value);
-      const collectionInstance = collection(this.fireStore, 'users');
-      addDoc(collectionInstance, f.value).then(
-        () => console.log("DATA SAVED!")
-      ).catch(err => console.log(err));
+    const collectionInstance = collection(this.fireStore, 'users');
+    addDoc(collectionInstance, f.value)
+      .then(() => console.log('DATA SAVED!'))
+      .catch((err) => console.log(err));
   }
 
-  getData(){
+  getData() {
     const collectionInstance = collection(this.fireStore, 'users');
-    collectionData(collectionInstance).subscribe(
-      val => console.log(val)
-    )
+    collectionData(collectionInstance).subscribe((val) => console.log(val));
+    this.users = collectionData(collectionInstance, {
+      idField: 'id',
+    }) as Observable<USer[]>;
+
+    const db = getFirestore();
+    const docRef = doc(db, 'users', 'GcosDTeJncOYdj5eaY0Y');
+    getDoc(docRef).then((user) => console.log(user));
   }
 
   ngOnInit(): void {
     this.getData();
   }
-
 }

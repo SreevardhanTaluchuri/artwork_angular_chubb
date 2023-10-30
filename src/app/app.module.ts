@@ -18,6 +18,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { SignupComponent } from './pages/signup/signup.component';
 import { FormsModule } from '@angular/forms';
+// import { SETTINGS as FIRESTORE_SETTINGS } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -40,14 +41,13 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     provideFirebaseApp(() =>
       initializeApp({
-        apiKey: "AIzaSyD2O6RqVNy4ochpMQJFbQBxVk0QzdArnO8",
-        authDomain: "art-users.firebaseapp.com",
-        databaseURL: "https://art-users-default-rtdb.firebaseio.com",
-        projectId: "art-users",
-        storageBucket: "art-users.appspot.com",
-        messagingSenderId: "109851637278",
-        appId: "1:109851637278:web:da45604245a8297880e00f",
-        measurementId: "G-X7JDKJ1VHV"
+        apiKey: 'AIzaSyCC3WkFxNW0EfV_s3YFmfJaeIlFeFhWPXE',
+        authDomain: 'art-users-ca860.firebaseapp.com',
+        projectId: 'art-users-ca860',
+        storageBucket: 'art-users-ca860.appspot.com',
+        messagingSenderId: '76151106674',
+        appId: '1:76151106674:web:b1a6a3fb36a3862a82e6eb',
+        measurementId: 'G-T0BTT3J41H',
       })
     ),
     provideAuth(() => getAuth()),
