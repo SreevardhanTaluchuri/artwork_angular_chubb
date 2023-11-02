@@ -1,0 +1,17 @@
+<div class="favoriteWrapper">
+
+    <div class="closeContainer">
+        <mat-icon class="close" (click)="removeFromFavorites()">close</mat-icon>
+    </div>
+    <div class="imageContainer">
+        <img class="image" src="{{ artService.getImageBasedOnUrl(art.image_id) }}"/>
+    </div>
+
+    <div class="cardContentContainer">
+        <div class="cardContent">
+            <div class="cardTitle">{{art.title}}</div>
+            <div class="cardSubTitle">{{art.artist_title}}</div>
+        </div>
+    </div>
+
+</div>

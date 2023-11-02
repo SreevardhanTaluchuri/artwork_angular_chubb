@@ -18,6 +18,10 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { SignupComponent } from './pages/signup/signup.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './pages/login/login.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { FavoriteComponent } from './components/favorite/favorite.component';
+import { PopupComponent } from './components/popup/popup.component';
 // import { SETTINGS as FIRESTORE_SETTINGS } from '@angular/fire/firestore';
 
 @NgModule({
@@ -30,6 +34,10 @@ import { FormsModule } from '@angular/forms';
     ArtComponent,
     ArtListComponent,
     SignupComponent,
+    LoginComponent,
+    FavoritesComponent,
+    FavoriteComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,

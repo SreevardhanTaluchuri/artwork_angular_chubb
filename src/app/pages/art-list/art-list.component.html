@@ -1,19 +1,51 @@
-<mat-list
-  style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  "
->
-  <mat-list-item *ngFor = "let art of artWork | paginate :{itemsPerPage : perPage, currentPage : currentPageNumber, totalItems : totalPages} ; let i = index">
-    <app-card [art]="art"></app-card>
-  </mat-list-item>
-</mat-list>
-
-
-<div class = "d-block text-center">
-  <pagination-controls (pageChange)="onPageChange($event)">
-  </pagination-controls>
+<div style="position: absolute; top: 80px; right: 68px; z-index: 100">
+  <mat-form-field style="margin-right: 20px;">
+    <mat-label>Search</mat-label>
+    <input matInput (input)="changeArtBasedOnSearch($event)" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Select Limit</mat-label>
+    <mat-select (valueChange)="limitChange($event)">
+      <mat-option
+        *ngFor="let option of [1, 5, 10, 20, 50, 100]"
+        [value]="option"
+      >
+        {{ option }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
-<!-- <mat-paginator [showFirstLastButtons]="true" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+<div style="width: 100vw;height: 90vh;display: flex;align-items: center;justify-content: center;" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+<ng-container *ngIf="!isLoading">
+  
+  <div style="display: flex; flex-wrap: wrap; margin: 60px 0 0 40px">
+    <div
+      *ngFor="
+        let art of artWork
+          | paginate
+            : {
+                itemsPerPage: perPage,
+                currentPage: currentPageNumber,
+                totalItems: totalPages
+              };
+        let i = index
+      "
+    >
+      <app-card [art]="art"></app-card>
+    </div>
+  </div>
+  
+  <div style="padding :20px 0 20px 0" class="d-block text-center">
+    <pagination-controls (pageChange)="onPageChange($event)">
+    </pagination-controls>
+  </div>
+
+  <button mat-fab [routerLink]="['/favorites']" style="position: fixed;bottom: 60px;right: 60px;" color="accent" aria-label="Example icon button with a heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  
+  <!-- <mat-paginator [showFirstLastButtons]="true" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+  
+</ng-container>

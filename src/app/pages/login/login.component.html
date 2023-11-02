@@ -1,0 +1,23 @@
+<div class="loginWrapper">
+  <section class="container">
+      <div class="login-container">
+          <div class="circle circle-one"></div>
+          <div class="form-container">
+              <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+              <h1 class="opacity">LOGIN</h1>
+              <form #f="ngForm">
+                <input type="text" placeholder="NAME" name="username" ngModel />
+                <input type="password" name="password" placeholder="PASSWORD" ngModel />
+                <button (click)="loginUser(f)">Log in</button>
+              </form>
+              
+              <div class="register-forget opacity">
+                  <a [routerLink]="['/signup']">REGISTER</a>
+              </div>
+          </div>
+          <div class="circle circle-two"></div>
+      </div>
+      <div class="theme-btn-container"></div>
+  </section>
+</div>
+

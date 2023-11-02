@@ -4,15 +4,32 @@ import { ArtWorkComponent } from './pages/art-work/art-work.component';
 import { ArtListComponent } from './pages/art-list/art-list.component';
 import { ArtComponent } from './pages/art/art.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { LoginComponent } from './pages/login/login.component';
+import { User } from './interfaces/user';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
+
+const getUser = () : string | null => {
+  const user = sessionStorage.getItem("user");
+  console.log(user);
+  return user;
+}
 
 const routes: Routes = [
   {
     path : 'artworks',
-    component : ArtListComponent,
+    component : ArtListComponent
   },
   {
-    path : 'singup',
+    path : 'signup',
     component : SignupComponent,
+  },
+  {
+    path : 'login',
+    component : LoginComponent,
+  },
+  {
+    path : 'favorites',
+    component : FavoritesComponent,
   },
   {
     path : 'artwork',
@@ -26,12 +43,12 @@ const routes: Routes = [
   },
   {
     path : '' , 
-    redirectTo : 'artwork' , 
+    redirectTo : getUser() ? "artworks" : "login",
     pathMatch : 'full'
 },
 {
     path : '**', 
-    redirectTo : 'artwork', 
+    redirectTo : getUser() ? "artworks" : "login", 
     pathMatch : 'full'
 },
 ];

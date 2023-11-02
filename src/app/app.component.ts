@@ -11,15 +11,6 @@ export class AppComponent implements OnInit {
   isLoading : boolean = true;
   constructor(private artService : ArtService){ }
 
-  getArtWork() {
-    this.artService.getArtWork().subscribe({
-      next : () => this.isLoading = false,
-      error: (err) => console.log(err),
-    });
-    // console.log(this.artService.artWork);
-  }
-
   ngOnInit(): void {
-    this.getArtWork();
   }
 }

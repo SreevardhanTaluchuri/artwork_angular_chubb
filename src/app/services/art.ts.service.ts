@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError } from 'rxjs';
-import { Art, ArtWork, ArtWorks, Arts } from '../interfaces/art';
+import { Art, ArtWork, ArtWorks, Arts, Pagination } from '../interfaces/art';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 })
 export class ArtService {
   artWork: ArtWork[] = [];
+  pagination! : Pagination;
 
   artWorkUrl: string = 'https://api.artic.edu/api/v1/artworks/';
   params: string[] = [
@@ -32,7 +33,10 @@ export class ArtService {
         params: { fields: this.params.join(',') },
       })
       .pipe(
-        tap((artWork) => (this.artWork = artWork.data)),
+        tap((artWork) => {
+          this.artWork = artWork.data;
+          this.pagination = artWork.pagination;
+        }),
         catchError(this.handleError)
       );
   }
@@ -41,6 +45,14 @@ export class ArtService {
     return this.http.get<Art>(this.artWorkUrl + id).pipe(
       catchError(this.handleError)
     )
+  }
+
+  getArtWorkBasedOnSearch(): Observable<Arts>{
+    return this.http.get<Arts>(this.artWorkUrl+"search" , {
+      params : {
+        fields: this.params.join(','),
+      }
+    })
   }
 
   getArtWorkBasedOnPage(limit: string, page: string): Observable<Arts> {

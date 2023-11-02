@@ -1,36 +1,58 @@
+<div
+  style="
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  "
+  *ngIf="isLoading"
+>
+  <mat-spinner></mat-spinner>
+</div>
 
-
-
-<div class="artDetailWrapper">
-  <img
-    class="artImage"
-    src="{{ artService.getImageBasedOnUrl(art.image_id) }}"
-    alt=""
-  />
-  <mat-card class="artDetailContainer">
-    <mat-card-header class="headerContainer">
-        <div class="title">{{art.title}}</div>
-        <div class="subTitle">Artist: {{art.artist_title}}</div>
-    </mat-card-header>
-    <mat-card-content>
+<ng-container *ngIf="!isLoading">
+  <div class="artDetailWrapper">
+    <img
+      class="artImage"
+      src="{{ artService.getImageBasedOnUrl(art.image_id) }}"
+      alt=""
+    />
+    <mat-card class="artDetailContainer">
+      <mat-card-header class="headerContainer">
+        <div class="title">{{ art.title }}</div>
+        <div class="subTitle">Artist: {{ art.artist_title }}</div>
+      </mat-card-header>
+      <mat-card-content>
         <mat-tab-group class="artTabGroup">
-            <mat-tab label="Dimensions">
-              <div style="margin : 30px 0 100px 40px">
-                  height : {{art?.dimensions_detail?.[0]?.height_cm}}cm
-                  <br>
-                  width : {{art?.dimensions_detail?.[0]?.width_cm}}cm
-              </div>
-            </mat-tab>
-            <mat-tab label="Description">
-              <p class="artTab" [innerHTML]="art.description"></p>
-            </mat-tab>
-            <mat-tab label="Exhibition history">
-              <p class="artTab" [innerHTML]="art.exhibition_history"></p>
+          <mat-tab label="Dimensions">
+            <div style="margin: 30px 0 100px 40px">
+              height : {{art.dimensions_detail?.[0]?.height_cm}}cm
+              <br />
+              width : {{art.dimensions_detail?.[0]?.width_cm}}cm
+            </div>
+          </mat-tab>
+          <mat-tab label="Description">
+            <p class="artTab" [innerHTML]="art.description"></p>
+          </mat-tab>
+          <mat-tab label="Exhibition history">
+            <p class="artTab" [innerHTML]="art.exhibition_history"></p>
           </mat-tab>
           <mat-tab label="Publication history">
-              <p class="artTab" [innerHTML]="art.publication_history"></p>
-            </mat-tab>
-          </mat-tab-group>
-    </mat-card-content>
-  </mat-card>
-</div>
+            <p class="artTab" [innerHTML]="art.publication_history"></p>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <button
+    mat-fab
+    [routerLink]="['/favorites']"
+    style="position: fixed; bottom: 60px; right: 60px"
+    color="accent"
+    aria-label="Example icon button with a heart icon"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+</ng-container>

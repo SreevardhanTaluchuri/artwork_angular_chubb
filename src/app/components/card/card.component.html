@@ -1,23 +1,79 @@
-<div class="card-wrapper  m-2">
-  <div class="row">
-    <div class = "col-lg-4">
+<mat-card class="example-card mat-elevation-z10">
+  <mat-card-header>
+    <ng-container *ngIf="!isLoading">
       <img
-      class="image"
-      src="{{ artService.getImageBasedOnUrl(art.image_id) }}"
-      alt="Photo of a Shiba Inu"
-    />
-    </div>
-    <div class = "col-lg-8 d-flex flex-column justify-content-center align-items-center">
-      <div class="card-content">
-        <div>{{ art.title }}</div>
-        <div>{{ art.artist_title }}</div>
-        <p *ngIf="art.description" [innerHTML]="art.description"></p>
-        <div *ngIf="!art.description">
-          No description found
-        </div>
-        <a [routerLink]="['/artwork',art.id]">know more</a>
+        id="card-img"
+        mat-card-xl-image
+        src="{{ artService.getImageBasedOnUrl(art.image_id) }}"
+        alt="{{ art.title }}"
+        (error)="loadImage()"
+      />
+    </ng-container>
+    <ng-container *ngIf="isLoading">
+      <mat-spinner></mat-spinner>
+    </ng-container>
+  </mat-card-header>
+  <div
+    style="
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      margin: 20px 0 0 0;
+      max-width: 300px;
+      width: 100%;
+    "
+  >
+    <mat-card-content
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 300px;
+        width: 100%;
+        padding: 0 0 0 15px;
+      "
+    >
+      <span style="display: flex; align-items: baseline">
+        <mat-card-title class="title"
+          ><span>{{ (art.title && art.title.length > 0) ? ( art.title.slice(0 , 20)) : art.title}}</span></mat-card-title
+        ><span style="color: black;font-weight: 800;">...</span>
+      </span>
+      <mat-card-subtitle
+        style="
+          max-width: 250px;
+          overflow: hidden;
+          width: 100%;
+          max-height: 20px;
+        "
+        >Artist : {{ art.artist_title }}</mat-card-subtitle
+      >
+      <div class="buttonContainer">
+        <button mat-raised-button color="primary">
+          <a style="color: rgb(246, 246, 246);text-decoration: none;" [routerLink]="['/artwork', art.id]">know more</a>
+        </button>
+        <button *ngIf="!isFavorite" (click)="addArtInFavorite()">
+          <mat-icon
+            style="
+              margin: 10px 0 0 0px;
+              color: rgba(255, 0, 0, 0.861);
+              cursor: pointer;
+            "
+            >favorite_outline</mat-icon
+          >
+        </button>
+        <button *ngIf="isFavorite" (click)="removeArtinFavorite()">
+          <mat-icon
+            style="
+              margin: 10px 0 0 0px;
+              color: rgba(255, 0, 0, 0.861);
+              cursor: pointer;
+            "
+            >favorite</mat-icon
+          >
+        </button>
       </div>
-    </div>
+    </mat-card-content>
+    <!-- <mat-icon style="margin: 10px 0 0 0px;color: rgba(255, 0, 0, 0.861);">favorite</mat-icon> -->
   </div>
-</div>
-
+  <mat-card-actions></mat-card-actions>
+</mat-card>

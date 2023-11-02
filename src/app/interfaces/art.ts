@@ -1,5 +1,5 @@
 export interface ArtWork {
-  id: Number;
+  id: number;
   title: String;
   date_display: String;
   place_of_origin: String;
@@ -45,11 +45,11 @@ export interface ArtWorks {
     data : ArtWork[]
 }
 
-interface Pagination {
-  total: Number;
+export interface Pagination {
+  total: number;
   limit: Number;
   offset: Number;
-  total_pages: Number;
+  total_pages: number;
   current_page: Number;
   next_url: String;
 }

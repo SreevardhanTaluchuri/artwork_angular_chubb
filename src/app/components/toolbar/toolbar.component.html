@@ -1,5 +1,11 @@
 <mat-toolbar color="primary">
-    <mat-icon class="menu-icon" (click)="toggleSideNav.emit()">menu</mat-icon>
-    <span>Art Work</span>
-  </mat-toolbar>
-  
+    <span style="cursor: pointer;" routerLink="['/artworks']">Art Work</span>
+    <span class="example-spacer"></span>
+    <div *ngIf="user">
+      Name: {{user.username['stringValue'] ? user.username.stringValue : user.username}}
+      <!-- {{user.username | json}} -->
+    </div>
+    <button *ngIf="user" (click)="logout()" matTooltip="Do you want to log out?">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+</mat-toolbar>

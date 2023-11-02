@@ -1,0 +1,91 @@
+.favoriteWrapper {
+  display: flex;
+  width: 334px;
+  height: 400px;
+  padding: 0px 20px 24px 20px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 24px;
+  border: 1px solid #ccc;
+  background: #fff;
+  margin: 10px;
+}
+
+.closeContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+  margin-top: 15px;
+}
+
+.close {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.imageContainer {
+  flex-shrink: 0;
+  margin : 20px auto;
+}
+
+.image{
+  max-width: 280px;
+  width: 100%;
+  max-height: 240px;
+  height: 100%;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cardContentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 5px;
+}
+
+.cardTitle {
+  color: #363636;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0.6px;
+}
+
+.cardSubTitle {
+  color: #363636;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  opacity: 0.7;
+  letter-spacing: 0.6px;
+}
+
+.cardDescription {
+  width: 300px;
+  overflow: hidden;
+  color: #828282;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+}
+
+
+
+
+
+ 
